@@ -1,0 +1,63 @@
+name: Publish Config to Cloudflare R2
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'nerdkit-main-config.toml'
+      - '.github/workflows/**'
+  workflow_dispatch: # Allows manual trigger from GitHub web or mobile UI anytime
+
+jobs:
+  publish:
+    name: Validate, Compile & Upload to R2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate TOML & Compile to JSON
+        run: |
+          python3 -c '
+          import tomllib, json, sys
+          try:
+              with open("nerdkit-main-config.toml", "rb") as f:
+                  data = tomllib.load(f)
+              with open("nerdkit-main-config.json", "w", encoding="utf-8") as f:
+                  json.dump(data, f, indent=2)
+              print("SUCCESS: TOML is valid and compiled to nerdkit-main-config.json")
+          except Exception as e:
+              print(f"SYNTAX ERROR in nerdkit-main-config.toml: {e}", file=sys.stderr)
+              sys.exit(1)
+          '
+
+      - name: Upload to Cloudflare R2 (nerdkit / config-cfg)
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+        run: |
+          R2_ENDPOINT="https://${{ secrets.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com"
+
+          echo "Uploading nerdkit-main-config.toml to R2..."
+          aws s3 cp nerdkit-main-config.toml \
+            s3://nerdkit/config-cfg/nerdkit-main-config.toml \
+            --endpoint-url "$R2_ENDPOINT" \
+            --content-type "application/toml; charset=utf-8" \
+            --cache-control "public, max-age=60, stale-while-revalidate=86400"
+
+          echo "Uploading nerdkit-main-config.json to R2..."
+          aws s3 cp nerdkit-main-config.json \
+            s3://nerdkit/config-cfg/nerdkit-main-config.json \
+            --endpoint-url "$R2_ENDPOINT" \
+            --content-type "application/json; charset=utf-8" \
+            --cache-control "public, max-age=60, stale-while-revalidate=86400"
+
+          echo "Publishing complete! Live at s3://nerdkit/config-cfg/"
