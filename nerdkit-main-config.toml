@@ -3,19 +3,21 @@
 # Repository: GistSwoonie / NerdKit-Config
 # File:  nerdkit-main-config.toml
 #
-# Mobile Editing Guide:
-# - To disable a screen: change 'true' to 'false'
-# - To edit text: change whatever is inside the double quotes "..."
-# - Blank lines and spacing do not matter.
+# Structure:
+# - PART 1: Screen Controls (Enable/disable individual tool screens)
+# - PART 2: Home Screen Master Layout (Order 1..7 & Enable/Disable sections)
+# - PART 2.1 - 2.7: Home Screen Sections (Parameters + Pure Markdown)
 # ==============================================================================
 
 [config_meta]
-schema_version = 1
-last_updated = "2026-10-20"
+schema_version = 2
+last_updated = "2026-10-26"
 config_name = "production"
 
+
 # ==============================================================================
-# 1. SCREEN CONTROLS (All 60+ Screens Grouped by Category)
+# PART 1: SCREEN CONTROLS (All 60+ Screens Grouped by Category)
+# Set 'true' to enable a screen, or 'false' to hide it from navigation.
 # ==============================================================================
 [screens]
 
@@ -101,106 +103,159 @@ data_logger = true
 
 
 # ==============================================================================
-# 2. APP LAUNCH WELCOME MESSAGE
-# Shown to users when they first launch the app (or upon new major releases).
+# PART 2: HOME SCREEN MASTER CONTROL (Section Order & Enable/Disable)
+# Sections are rendered top-to-bottom in numerical order (1, 2, 3, 4, 5, 6, 7).
+# Only sections set to 'true' in [home_screen.enabled_sections] are rendered.
 # ==============================================================================
-[welcome_message]
+[home_screen]
 enabled = true
-id = "welcome_launch_v1"
-show_only_on_first_launch = true
+title = "NerdKit Home"
 
-title = "Welcome to NerdKit"
-subtitle = "Precision Hardware & Environmental Toolkit"
-body = "NerdKit provides real-time telemetry, offline mapping, precision sensors, and astronomical tools with zero telemetry tracking. Explore the bottom tabs to begin."
+# --- Enable or Disable Home Screen Sections (true / false) ---
+[home_screen.enabled_sections]
+emergency_banner = false    # Part 2.1: Emergency / Service Degradation Alert
+welcome_hero     = true     # Part 2.2: Main Welcome & Intro Card
+upsell_pro       = true     # Part 2.3: Pro Upgrade / Discount Pitch (Free users)
+featured_tools   = true     # Part 2.4: Quick-Launch Instrument List
+whats_new        = true     # Part 2.5: Upcoming Upgrades & Release Notes
+version_update   = false    # Part 2.6: App Version Enforcement / Update Prompt
+community_links  = true     # Part 2.7: Community, Docs & Support Links
 
-# Optional banner image (leave empty "" if none)
-image_url = ""
-
-# Primary Button
-primary_button_text = "Get Started"
-primary_button_action = "DISMISS"         # Options: DISMISS, DEEP_LINK, OPEN_URL
-primary_button_target = ""
-
-# Secondary Button (optional)
-secondary_button_text = "View Quick Tour"
-secondary_button_action = "DEEP_LINK"
-secondary_button_target = "nerdkit://tour"
-
-
-# ==============================================================================
-# 3. PRO UPSELL SCREEN (Convert Free Users to Paid)
-# Configure content for sales, discount pricing, or Pro feature pitches.
-# ==============================================================================
-[upsell_pro]
-enabled = true
-id = "upsell_bundle_v1"
-
-# Frequency Capping (avoids annoying the user on every launch)
-max_impressions = 3                      # Total times this dialog will appear
-min_days_between_prompts = 3             # Wait at least 3 days between showings
-
-# Promotional Badge & Header
-badge_text = "40% OFF LIMITED TIME"
-title = "Upgrade to NerdKit Pro"
-subtitle = "Unlock the full offline telemetry suite"
-
-body = "Support independent development and unlock high-precision ephemeris, offline bathymetric maps, unlimited satellite tracking, and raw GNSS NMEA logging."
-
-# Bulleted feature list displayed on the upsell card
-features = [
-  "High-Precision Astronomical Ephemeris & Solar Eclipses",
-  "Full Offline Vector & Elevation Maps (No Internet Needed)",
-  "Real-Time Satellite Orbit Propagator & Pass Predictions",
-  "Raw GNSS NMEA 0183 File Logging & CSV Sensor Dumps",
-  "Ad-Free, Lifetime Access with Continuous Instrument Updates"
-]
-
-# Graphic / Banner (optional CDN image)
-image_url = "https://raw.githubusercontent.com/GistSwoonie/NerdKit-Config/main/assets/pro_banner.webp"
-
-# Price & Purchase Buttons
-price_display = "$4.99 USD"
-primary_button_text = "Unlock Lifetime Pro ($4.99)"
-primary_button_action = "DEEP_LINK"
-primary_button_target = "nerdkit://store/pro"
-
-secondary_button_text = "Maybe Later"
-secondary_button_action = "DISMISS"
-secondary_button_target = ""
+# --- Top-to-Bottom Numerical Render Order (1 = Top, 7 = Bottom) ---
+[home_screen.section_order]
+emergency_banner = 1
+welcome_hero     = 2
+upsell_pro       = 3
+featured_tools   = 4
+whats_new        = 5
+version_update   = 6
+community_links  = 7
 
 
 # ==============================================================================
-# 4. EMERGENCY BANNER / MAINTENANCE ALERT
-# Appears as a top banner if a major service (like NOAA or GPS API) is degraded.
+# PART 2.1: EMERGENCY / MAINTENANCE BANNER SECTION
 # ==============================================================================
-[maintenance_banner]
-enabled = false
+[home_screen.sections.emergency_banner]
 id = "alert_noaa_feed_2026"
-banner_level = "WARNING"                 # Options: INFO, WARNING, CRITICAL
-title = "NOAA Weather Data Delayed"
-message = "NOAA weather feeds are currently experiencing upstream delays. Offline cache is active."
+style_preset = "WARNING"                 # DEFAULT, ACCENT, PRO, WARNING, CRITICAL, INFO
 dismissible = true
 
+markup = '''
+`SERVICE NOTICE`
+## NOAA Weather Data Delayed
+NOAA upstream feeds are currently experiencing intermittent delays. Offline weather cache remains active.
+'''
+
 
 # ==============================================================================
-# 5. APP VERSION ENFORCEMENT & PLAY STORE UPDATES
+# PART 2.2: MAIN WELCOME MESSAGE SECTION
 # ==============================================================================
-[app_version]
+[home_screen.sections.welcome_hero]
+id = "welcome_launch_v1"
+style_preset = "ACCENT"
+show_only_on_first_launch = false
+dismissible = true
+
+markup = '''
+# Welcome to NerdKit
+### Precision Hardware & Environmental Toolkit
+
+Real-time sensor telemetry, offline mapping, astronomical ephemeris, and network diagnostics with zero tracking.
+
+[Explore Instruments](nerdkit://screen/atomic_time)
+'''
+
+
+# ==============================================================================
+# PART 2.3: PRO UPSELL SECTION (Free Users -> Paid Conversion)
+# ==============================================================================
+[home_screen.sections.upsell_pro]
+id = "upsell_bundle_v1"
+style_preset = "PRO"
+target_audience = "FREE_USERS_ONLY"      # FREE_USERS_ONLY, ALL_USERS
+max_impressions = 0                      # 0 = always show on Home Screen while enabled
+min_days_between_prompts = 0
+
+markup = '''
+`40% OFF LIMITED TIME`
+## Upgrade to NerdKit Pro
+### Unlock the full offline telemetry suite
+
+Support independent development and unlock advanced instrumentation:
+
+- High-Precision Astronomical Ephemeris & Solar Eclipses
+- Full Offline Vector & Elevation Maps (No Internet Needed)
+- Real-Time Satellite Orbit Propagator & Pass Predictions
+- Raw GNSS NMEA 0183 File Logging & CSV Sensor Dumps
+- Ad-Free, Lifetime Access with Continuous Updates
+
+[Unlock Lifetime Pro ($4.99)](nerdkit://store/pro)
+'''
+
+
+# ==============================================================================
+# PART 2.4: FEATURED INSTRUMENTS / QUICK LAUNCH SECTION
+# ==============================================================================
+[home_screen.sections.featured_tools]
+id = "featured_tools_v1"
+style_preset = "DEFAULT"
+
+markup = '''
+## Quick Launch Instruments
+### Jump directly to key tools
+
+- [Atomic Time](nerdkit://screen/atomic_time) - NTP Stratum-1 precision clock
+- [Satellite Viewer](nerdkit://screen/satellite_viewer) - Live SGP4 orbit tracking
+- [Offline Maps](nerdkit://screen/offline_maps) - Vector & terrain elevation maps
+- [Surface Level](nerdkit://screen/surface_level) - 2D precision spirit bubble
+'''
+
+
+# ==============================================================================
+# PART 2.5: UPCOMING UPGRADES & RELEASE NOTES SECTION
+# ==============================================================================
+[home_screen.sections.whats_new]
+id = "whats_new_2026_10"
+style_preset = "INFO"
+
+markup = '''
+`UPCOMING IN v1.1`
+## New Instruments & Offline Radar
+We are adding global offline bathymetry layers, enhanced acoustic RT60 room decay graphs, and multi-constellation GNSS sky plots.
+'''
+
+
+# ==============================================================================
+# PART 2.6: APP VERSION ENFORCEMENT & UPDATE NOTICE SECTION
+# ==============================================================================
+[home_screen.sections.version_update]
+id = "version_check_v1"
+style_preset = "INFO"
 minimum_supported_version_code = 1
 latest_available_version_code = 120
 force_update = false
 
-update_title = "Update Available"
-update_message = "A new version of NerdKit is available with enhanced satellite tracking and bug fixes."
-play_store_url = "https://play.google.com/store/apps/details?id=com.gistgear.nerdkit"
+markup = '''
+`UPDATE AVAILABLE`
+## New Version of NerdKit Ready
+A newer release of NerdKit is available on Google Play with improved sensor calibration and bug fixes.
+
+[Update on Google Play](https://play.google.com/store/apps/details?id=com.gistgear.nerdkit)
+'''
 
 
 # ==============================================================================
-# 6. EXTERNAL LINKS & COMMUNITY
-# Update support email or Discord invite without recompiling the app.
+# PART 2.7: COMMUNITY, DOCS & SUPPORT LINKS SECTION
 # ==============================================================================
-[links]
-discord_community = "https://discord.gg/nerdkit"
-documentation_url = "https://docs.nerdkit.app"
-support_email = "support@gistgear.com"
-privacy_policy_url = "https://nerdkit.app/privacy"
+[home_screen.sections.community_links]
+id = "community_links_v1"
+style_preset = "DEFAULT"
+
+markup = '''
+## Community & Support
+
+- [Discord Community](https://discord.gg/nerdkit) - Join discussions & feature requests
+- [Documentation](https://docs.nerdkit.app) - User guides & sensor specifications
+- [Contact Support](mailto:support@gistgear.com) - Report bugs or feedback
+- [Privacy Policy](https://nerdkit.app/privacy) - Zero-tracking guarantee
+'''
