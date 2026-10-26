@@ -207,8 +207,8 @@ style_preset = "DEFAULT"
 dismissible = false
 
 markup = '''
-## Instruments & Sensors Directory
-### Browse all 60+ tools by category
+## Navigate all 60+ tools by category
+### Use the top right '☰ Navigate' menu from anywhere
 '''
 
 
