@@ -158,11 +158,11 @@ dismissible = true
 
 markup = '''
 # Welcome to NerdKit
-### Precision Hardware & Environmental Toolkit
+### The Ultimate Environment Multi Tool.
 
-Real-time sensor telemetry, offline mapping, astronomical ephemeris, and network diagnostics with zero tracking.
+60+ Tools with NO adds, No tracking and No account creation.
 
-[Explore Instruments](nerdkit://screen/atomic_time)
+[See NerdKit.app for full details] (https://nerdkit.app/)
 '''
 
 
