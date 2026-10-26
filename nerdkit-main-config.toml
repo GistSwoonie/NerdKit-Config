@@ -159,7 +159,7 @@ show_only_on_first_launch = false
 dismissible = true
 
 markup = '''
-# Welcome to NerdKit
+# Welcome to NerdKit 'beta'
 ### The Ultimate Environment Multi Tool.
 
 60+ Tools with 
@@ -182,7 +182,7 @@ max_impressions = 0                      # 0 = always show on Home Screen while 
 min_days_between_prompts = 0
 
 markup = '''
-`50% OFF LIMITED TIME`
+`50% OFF LIMITED TIME (BETA)`
 ## Upgrade to NerdKit Pro
 ### Unlock the full offline telemetry suite
 
