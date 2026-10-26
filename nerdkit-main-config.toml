@@ -126,8 +126,8 @@ community_links  = true     # Part 2.8: Community, Docs & Support Links
 [home_screen.section_order]
 emergency_banner = 1
 welcome_hero     = 2
-upsell_pro       = 3
-tools_directory  = 4
+tools_directory  = 3
+upsell_pro       = 4
 featured_tools   = 5
 whats_new        = 6
 version_update   = 7
