@@ -160,9 +160,12 @@ markup = '''
 # Welcome to NerdKit
 ### The Ultimate Environment Multi Tool.
 
-60+ Tools with NO adds, No tracking and No account creation.
+60+ Tools with 
+- NO Adds
+- No Tracking
+- No Account Creation.
 
-[See NerdKit.app for full details] (https://nerdkit.app/)
+[See NerdKit.app for full privacy details] (https://nerdkit.app/privacy)
 '''
 
 
