@@ -5,8 +5,8 @@
 #
 # Structure:
 # - PART 1: Screen Controls (Enable/disable individual tool screens)
-# - PART 2: Home Screen Master Layout (Order 1..7 & Enable/Disable sections)
-# - PART 2.1 - 2.7: Home Screen Sections (Parameters + Pure Markdown)
+# - PART 2: Home Screen Master Layout (Order 1..8 & Enable/Disable sections)
+# - PART 2.1 - 2.8: Home Screen Sections (Parameters + Pure Markdown)
 # ==============================================================================
 
 [config_meta]
@@ -104,7 +104,7 @@ data_logger = true
 
 # ==============================================================================
 # PART 2: HOME SCREEN MASTER CONTROL (Section Order & Enable/Disable)
-# Sections are rendered top-to-bottom in numerical order (1, 2, 3, 4, 5, 6, 7).
+# Sections are rendered top-to-bottom in numerical order (1, 2, 3, 4, 5, 6, 7, 8).
 # Only sections set to 'true' in [home_screen.enabled_sections] are rendered.
 # ==============================================================================
 [home_screen]
@@ -116,20 +116,22 @@ title = "NerdKit Home"
 emergency_banner = false    # Part 2.1: Emergency / Service Degradation Alert
 welcome_hero     = true     # Part 2.2: Main Welcome & Intro Card
 upsell_pro       = true     # Part 2.3: Pro Upgrade / Discount Pitch (Free users)
-featured_tools   = true     # Part 2.4: Quick-Launch Instrument List
-whats_new        = true     # Part 2.5: Upcoming Upgrades & Release Notes
-version_update   = false    # Part 2.6: App Version Enforcement / Update Prompt
-community_links  = true     # Part 2.7: Community, Docs & Support Links
+tools_directory  = true     # Part 2.4: Full Collapsible Tools Menu (Measure to Sky)
+featured_tools   = true     # Part 2.5: Quick-Launch Instrument List
+whats_new        = true     # Part 2.6: Upcoming Upgrades & Release Notes
+version_update   = false    # Part 2.7: App Version Enforcement / Update Prompt
+community_links  = true     # Part 2.8: Community, Docs & Support Links
 
-# --- Top-to-Bottom Numerical Render Order (1 = Top, 7 = Bottom) ---
+# --- Top-to-Bottom Numerical Render Order (1 = Top, 8 = Bottom) ---
 [home_screen.section_order]
 emergency_banner = 1
 welcome_hero     = 2
 upsell_pro       = 3
-featured_tools   = 4
-whats_new        = 5
-version_update   = 6
-community_links  = 7
+tools_directory  = 4
+featured_tools   = 5
+whats_new        = 6
+version_update   = 7
+community_links  = 8
 
 
 # ==============================================================================
@@ -197,7 +199,21 @@ Support independent development and unlock advanced instrumentation:
 
 
 # ==============================================================================
-# PART 2.4: FEATURED INSTRUMENTS / QUICK LAUNCH SECTION
+# PART 2.4: COMPLETE TOOLS DIRECTORY SECTION (Collapsible Category Menu)
+# ==============================================================================
+[home_screen.sections.tools_directory]
+id = "tools_directory_v1"
+style_preset = "DEFAULT"
+dismissible = false
+
+markup = '''
+## Instruments & Sensors Directory
+### Browse all 60+ tools by category
+'''
+
+
+# ==============================================================================
+# PART 2.5: FEATURED INSTRUMENTS / QUICK LAUNCH SECTION
 # ==============================================================================
 [home_screen.sections.featured_tools]
 id = "featured_tools_v1"
@@ -215,7 +231,7 @@ markup = '''
 
 
 # ==============================================================================
-# PART 2.5: UPCOMING UPGRADES & RELEASE NOTES SECTION
+# PART 2.6: UPCOMING UPGRADES & RELEASE NOTES SECTION
 # ==============================================================================
 [home_screen.sections.whats_new]
 id = "whats_new_2026_10"
@@ -229,7 +245,7 @@ We are adding global offline bathymetry layers, enhanced acoustic RT60 room deca
 
 
 # ==============================================================================
-# PART 2.6: APP VERSION ENFORCEMENT & UPDATE NOTICE SECTION
+# PART 2.7: APP VERSION ENFORCEMENT & UPDATE NOTICE SECTION
 # ==============================================================================
 [home_screen.sections.version_update]
 id = "version_check_v1"
@@ -248,7 +264,7 @@ A newer release of NerdKit is available on Google Play with improved sensor cali
 
 
 # ==============================================================================
-# PART 2.7: COMMUNITY, DOCS & SUPPORT LINKS SECTION
+# PART 2.8: COMMUNITY, DOCS & SUPPORT LINKS SECTION
 # ==============================================================================
 [home_screen.sections.community_links]
 id = "community_links_v1"
