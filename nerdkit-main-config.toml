@@ -165,7 +165,7 @@ markup = '''
 - No Tracking
 - No Account Creation.
 
-[See NerdKit.app for full privacy details] (https://nerdkit.app/privacy)
+[See NerdKit.app for full privacy details](https://nerdkit.app/privacy)
 '''
 
 
@@ -180,7 +180,7 @@ max_impressions = 0                      # 0 = always show on Home Screen while 
 min_days_between_prompts = 0
 
 markup = '''
-`40% OFF LIMITED TIME`
+`50% OFF LIMITED TIME`
 ## Upgrade to NerdKit Pro
 ### Unlock the full offline telemetry suite
 
@@ -192,7 +192,7 @@ Support independent development and unlock advanced instrumentation:
 - Raw GNSS NMEA 0183 File Logging & CSV Sensor Dumps
 - Ad-Free, Lifetime Access with Continuous Updates
 
-[Unlock Lifetime Pro ($4.99)](nerdkit://store/pro)
+[Unlock Lifetime Pro ($9.99)](nerdkit://store/pro)
 '''
 
 
