@@ -160,12 +160,13 @@ dismissible = true
 
 markup = '''
 # Welcome to NerdKit 'BETA'
-### The Ultimate Environment Multi Tool.
+### The ultimate pocket multitool to measure, explore, and decode the physical and digital world around you.
 
 60+ Tools with 
-- NO Adds
+- NO Ads
 - No Tracking
-- No Account Creation.
+- No Account Creation
+- No Off-Device Data Sharing and Storage
 
 [See NerdKit.app for full privacy details](https://nerdkit.app/privacy)
 '''
@@ -194,7 +195,9 @@ Support independent development and unlock advanced instrumentation:
 - Raw GNSS NMEA 0183 File Logging & CSV Sensor Dumps
 - Ad-Free, Lifetime Access with Continuous Updates
 
-[Unlock Lifetime Pro ($9.98/~~19.99~~)](nerdkit://store/pro)
+[Monthly Pro Subscription ($1.99)](nerdkit://store/pro)
+[Yearly Pro Subscription ($14.99](nerdkit://store/pro)
+[Unlock Lifetime Pro (Intro Price $19.99/~~39.99~~)](nerdkit://store/pro)
 '''
 
 
