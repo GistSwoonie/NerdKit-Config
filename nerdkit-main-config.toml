@@ -159,7 +159,7 @@ show_only_on_first_launch = false
 dismissible = true
 
 markup = '''
-# Welcome to NerdKit 'beta'
+# Welcome to NerdKit 'BETA'
 ### The Ultimate Environment Multi Tool.
 
 60+ Tools with 
@@ -208,7 +208,7 @@ dismissible = false
 
 markup = '''
 ## Navigate all 60+ tools by category
-### Use the top right '☰ Navigate' menu from anywhere
+### Use the top right ☰ menu from anywhere
 '''
 
 
