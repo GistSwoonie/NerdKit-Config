@@ -187,13 +187,12 @@ markup = '''
 ## Upgrade to NerdKit Pro
 ### Unlock the full offline telemetry suite
 
-Support independent development and unlock advanced instrumentation:
-
-- High-Precision Astronomical Ephemeris & Solar Eclipses
-- Full Offline Vector & Elevation Maps (No Internet Needed)
-- Real-Time Satellite Orbit Propagator & Pass Predictions
-- Raw GNSS NMEA 0183 File Logging & CSV Sensor Dumps
-- Ad-Free, Lifetime Access with Continuous Updates
+Turn your phone into the ultimate off-grid command center. Support independent, privacy-first development and unlock our most advanced Pro instruments:
+- **Full Offline Maps & 3D Terrain:** Dedicated **Offline Maps** (no internet needed), Elevation Map, 3D Terrain Viewer, Multi-Source Altitude & GPS with live graphing
+- **Automatic Travel & Expedition Hub:** Travel Hub, hands-free **Automatic Ongoing Trip Logging** & interactive **Trophy Map**
+- **3D Space & Sky Observatory:** Live **3D Satellite Viewer** as seen from space, **3D Solar System**, Deep Sky Viewer, Aurora Forecast, Sky Events & Upcoming Rocket Launches
+- **Global Weather & Earth Telemetry:** Global Weather, Tides, Earthquakes & precision Sun and Moon Details
+- **Wi-Fi Mesh, Cell & LAN Intelligence:** Wi-Fi Analysis with **Mesh Wi-Fi Topology & Mapping**, Mobile Data & **Cell Tower Mapping**, plus a **LAN Scanner** for detailed insight into what's on your network
 
 [Monthly Pro Subscription \(During BETA  - FREE/~~$1.99~~)](nerdkit://store/pro)
 [Yearly Pro Subscription \(During BETA - FREE/~~$14.99~~)](nerdkit://store/pro)
